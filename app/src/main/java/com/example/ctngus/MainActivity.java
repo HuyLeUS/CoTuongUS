@@ -1,30 +1,30 @@
 package com.example.ctngus;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.GridView;
-
-import com.example.ctngus.QuanCoTuong.QuanSoai;
-import com.example.ctngus.QuanCoTuong.QuanCo;
-import com.example.ctngus.QuanCoTuong.QuanMa;
-import com.example.ctngus.QuanCoTuong.QuanPhao;
-import com.example.ctngus.QuanCoTuong.QuanSi;
-import com.example.ctngus.QuanCoTuong.QuanTot;
-import com.example.ctngus.QuanCoTuong.QuanTuong;
-import com.example.ctngus.QuanCoTuong.QuanXe;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Button btnStart;
     private BanCo banCo = new BanCo();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        btnStart=(Button)findViewById(R.id.btnStart);
+
     }
 
 
+    public void batdau(View view) {
 
+                Intent intent=new Intent(this,BanCoActivity.class);
+                startActivity(intent);
+
+    }
 }
