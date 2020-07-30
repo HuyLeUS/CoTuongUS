@@ -2,7 +2,7 @@ package com.example.ctngus;
 
 import com.example.ctngus.QuanCoTuong.QuanCo;
 
-class OCo {
+public class OCo {
     protected ToaDo toaDo;
     protected QuanCo quanCo = null;
 

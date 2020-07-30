@@ -1,7 +1,5 @@
 package com.example.ctngus;
 
-import android.opengl.Matrix;
-
 import com.example.ctngus.QuanCoTuong.Phe;
 import com.example.ctngus.QuanCoTuong.QuanCo;
 import com.example.ctngus.QuanCoTuong.QuanMa;
@@ -12,9 +10,6 @@ import com.example.ctngus.QuanCoTuong.QuanTot;
 import com.example.ctngus.QuanCoTuong.QuanTuong;
 import com.example.ctngus.QuanCoTuong.QuanXe;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
 
 public class BanCo {
     private QuanCo quanXeDo1, quanXeDo2, quanMaDo1, quanMaDo2, quanTuongDo1, quanTuongDo2, quanSiDo1, quanSiDo2, quanSoaiDo,
@@ -40,7 +35,6 @@ public class BanCo {
         quanTotDen3 = new QuanTot(Phe.PHE_DEN);
         quanTotDen4 = new QuanTot(Phe.PHE_DEN);
         quanTotDen5 = new QuanTot(Phe.PHE_DEN);
-
 
         quanXeDo1 = new QuanXe(Phe.PHE_DO);
         quanMaDo1 = new QuanMa(Phe.PHE_DO);
