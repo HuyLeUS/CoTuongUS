@@ -15,7 +15,7 @@
         android:layout_marginLeft="128dp"
         android:layout_marginTop="208dp"
         android:text="Mở bàn cờ"
-        android:onClick="batdau"
+        android:onClick="batDau"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

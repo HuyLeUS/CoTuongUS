@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
      }
 
 
-     public void batdau(View view) {
+     public void batDau(View view) {
 
           Intent intent = new Intent(this, BanCoActivity.class);
           startActivity(intent);

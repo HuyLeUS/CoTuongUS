@@ -1,27 +1,39 @@
 package com.example.ctngus;
 
+import com.example.ctngus.QuanCoTuong.QuanCo;
+
 public class ToaDo {
-    private Integer mToaDoX;
-    private Integer mToadoY;
+    private Integer X;
+    private Integer Y;
+    private QuanCo quanCo = null;
 
-    public ToaDo(Integer mToaDoX, Integer mToadoY) {
-        this.mToaDoX = mToaDoX;
-        this.mToadoY = mToadoY;
+    public ToaDo(Integer x, Integer y, QuanCo quanCo) {
+        X = x;
+        Y = y;
+        this.quanCo = quanCo;
     }
 
-    public Integer getmToaDoX() {
-        return mToaDoX;
+    public QuanCo getQuanCo() {
+        return quanCo;
     }
 
-    public Integer getmToadoY() {
-        return mToadoY;
+    public void setQuanCo(QuanCo quanCo) {
+        this.quanCo = quanCo;
     }
 
-    public void setmToaDoX(Integer mToaDoX) {
-        this.mToaDoX = mToaDoX;
+    public Integer getX() {
+        return X;
     }
 
-    public void setmToadoY(Integer mToadoY) {
-        this.mToadoY = mToadoY;
+    public Integer getY() {
+        return Y;
+    }
+
+    public void setX(Integer x) {
+        this.X = x;
+    }
+
+    public void setY(Integer y) {
+        this.Y = y;
     }
 }
