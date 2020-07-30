@@ -18,6 +18,10 @@ public class BanCo {
              quanTotDen1, quanTotDen2, quanTotDen3, quanTotDen4, quanTotDen5, quanPhaoDen1, quanPhaoDen2;
      private ToaDo[][] mangToaDo = new ToaDo[10][9];
 
+     public ToaDo[][] getMangToaDo() {
+          return mangToaDo;
+     }
+
      public BanCo() {
           quanXeDen1 = new QuanXe(Phe.PHE_DEN);
           quanMaDen1 = new QuanMa(Phe.PHE_DEN);

@@ -8,6 +8,10 @@ public abstract class QuanCo {
     //quan co di chuyen
 
 
+    public Phe getPhe() {
+        return phe;
+    }
+
     //contructor
     public QuanCo(Phe phe) {
         this.phe = phe;

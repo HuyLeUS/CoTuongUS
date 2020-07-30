@@ -11,14 +11,14 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
      private Button btnStart;
-     private BanCo banCo = new BanCo();
+
 
      @Override
      protected void onCreate(Bundle savedInstanceState) {
           super.onCreate(savedInstanceState);
           setContentView(R.layout.activity_main);
 
-          banCo.xepCo();
+
 
           btnStart = (Button) findViewById(R.id.btnStart);
 
