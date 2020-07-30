@@ -71,7 +71,7 @@ public class BanCo {
         mangOCo[0][7].setQuanCo(quanMaDen2);
         mangOCo[0][8].setQuanCo(quanXeDen2);
         mangOCo[2][1].setQuanCo(quanPhaoDen1);
-        mangOCo[2][7].setQuanCo(quanPhaoDen1);
+        mangOCo[2][7].setQuanCo(quanPhaoDen2);
         mangOCo[3][0].setQuanCo(quanTotDen1);
         mangOCo[3][2].setQuanCo(quanTotDen2);
         mangOCo[3][4].setQuanCo(quanTotDen3);
@@ -88,7 +88,7 @@ public class BanCo {
         mangOCo[9][7].setQuanCo(quanMaDo2);
         mangOCo[9][8].setQuanCo(quanXeDo2);
         mangOCo[7][1].setQuanCo(quanPhaoDo1);
-        mangOCo[7][7].setQuanCo(quanPhaoDo1);
+        mangOCo[7][7].setQuanCo(quanPhaoDo2);
         mangOCo[6][0].setQuanCo(quanTotDo1);
         mangOCo[6][2].setQuanCo(quanTotDo2);
         mangOCo[6][4].setQuanCo(quanTotDo3);
