@@ -1,6 +1,7 @@
 package com.example.ctngus.TroChoi;
 
 import com.example.ctngus.QuanCoTuong.Phe;
+import com.example.ctngus.QuanCoTuong.QuanCo;
 
 public class TroChoi {
      private Phe luot;
@@ -19,10 +20,12 @@ public class TroChoi {
           if (toaDoDaChon == null) {
                toaDoDaChon = nguoiDangChoi.chonToaDo(banCo, toaDo);
           } else {
-               if(toaDo.getQuanCo().getPhe().equals(luot))
-               {
-                    toaDoDaChon = nguoiDangChoi.chonToaDo(banCo, toaDo);
-                    return;
+               QuanCo quanCo = toaDo.getQuanCo();
+               if(quanCo != null) {
+                    if (quanCo.getPhe().equals(luot)) {
+                         toaDoDaChon = nguoiDangChoi.chonToaDo(banCo, toaDo);
+                         return;
+                    }
                }
                boolean result = nguoiDangChoi.danhCo(banCo, toaDoDaChon, toaDo);
                toaDoDaChon = null;
