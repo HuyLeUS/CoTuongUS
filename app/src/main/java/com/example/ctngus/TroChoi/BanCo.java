@@ -62,13 +62,22 @@ public class BanCo {
           for (int i = 0; i < 10; i++) {
                for (int j = 0; j < 9; j++) {
                     mangToaDo[i][j] = new ToaDo(j, i, null);
-//                    Random rng = new Random();
-//                    mangToaDo[i][j].setLaDiemGoiY(rng.nextBoolean());
+                    Random rng = new Random();
+                    mangToaDo[i][j].setLaDiemGoiY(rng.nextBoolean());
                }
           }
      }
 
      public void xepCo() {
+          //Lấy tất cả quân cờ ra khỏi bàn cờ
+          for (int i = 0; i < 10; i++) {
+               for (int j = 0; j < 9; j++) {
+                    mangToaDo[i][j].setQuanCo(null);
+//                    Random rng = new Random();
+//                    mangToaDo[i][j].setLaDiemGoiY(rng.nextBoolean());
+               }
+          }
+          //Xếp cờ
           mangToaDo[0][0].setQuanCo(quanXeDen1);
           mangToaDo[0][1].setQuanCo(quanMaDen1);
           mangToaDo[0][2].setQuanCo(quanTuongDen1);
@@ -113,6 +122,13 @@ public class BanCo {
      public boolean thucHienDanhCo(ToaDo toaDoDaChon, ToaDo toaDoDen)
      {
           //Xử lý di chuyển ăn quân địch
+          QuanCo quanCo = toaDoDaChon.getQuanCo();
+          if(toaDoDen.getLaDiemGoiY())
+          {
+               toaDoDaChon.setQuanCo(null);
+               toaDoDen.setQuanCo(quanCo);
+               return true;
+          }
           return false;
      }
 }

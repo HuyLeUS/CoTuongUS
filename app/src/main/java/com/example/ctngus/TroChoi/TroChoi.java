@@ -5,33 +5,59 @@ import com.example.ctngus.QuanCoTuong.QuanCo;
 
 public class TroChoi {
      private Phe luot;
+     private GiaiDoan giaiDoan = GiaiDoan.CHON_QUAN_CO;
      private BanCo banCo;
      private NguoiChoi nguoiChoiDen = new NguoiChoi(Phe.PHE_DEN);
      private NguoiChoi nguoiChoiDo = new NguoiChoi(Phe.PHE_DO);
      private ToaDo toaDoDaChon = null;
 
+     public void setGiaiDoan(GiaiDoan giaiDoan) {
+          this.giaiDoan = giaiDoan;
+     }
+
+     public GiaiDoan getGiaiDoan() {
+          return giaiDoan;
+     }
+
      public void xuLySuKienTroChoi(ToaDo toaDo) {
           NguoiChoi nguoiDangChoi;
+          //Tìm ra người đang chơi
           if (luot.equals(nguoiChoiDen.getPhe())) {
                nguoiDangChoi = nguoiChoiDen;
           } else {
                nguoiDangChoi = nguoiChoiDo;
           }
-          if (toaDoDaChon == null) {
+          //chưa chọn quân cờ
+          if (giaiDoan.equals(GiaiDoan.CHON_QUAN_CO)) {
+               //Thực hiện chọn tọa độ
                toaDoDaChon = nguoiDangChoi.chonToaDo(banCo, toaDo);
+               if(toaDoDaChon != null)
+               {
+                    giaiDoan = GiaiDoan.DA_CHON_QUAN_CO;
+               }
           } else {
-               QuanCo quanCo = toaDo.getQuanCo();
-               if(quanCo != null) {
-                    if (quanCo.getPhe().equals(luot)) {
-                         toaDoDaChon = nguoiDangChoi.chonToaDo(banCo, toaDo);
-                         return;
+               //Đã chọn quân
+
+               if(giaiDoan.equals(GiaiDoan.DA_CHON_QUAN_CO)) {
+                    QuanCo quanCo = toaDo.getQuanCo();
+                    if(quanCo != null) {
+                         if (quanCo.getPhe().equals(luot)) { // Đổi quân
+                              toaDoDaChon = nguoiDangChoi.chonToaDo(banCo, toaDo);
+                              return;
+                         }
                     }
+                    //Đánh cờ
+                    boolean result = nguoiDangChoi.danhCo(banCo, toaDoDaChon, toaDo);
+                    if(result) {
+                         //Đánh thành công thì đổi lượt
+                         toaDoDaChon = toaDo;
+                         giaiDoan = GiaiDoan.DANH_CO;
+                         luot = Phe.values()[(luot.ordinal() + 1) % 2];
+                    }
+
                }
-               boolean result = nguoiDangChoi.danhCo(banCo, toaDoDaChon, toaDo);
-               toaDoDaChon = null;
-               if(result) {
-                    luot = Phe.values()[(luot.ordinal() + 1) % 2];
-               }
+
+
           }
      }
 

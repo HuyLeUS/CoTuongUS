@@ -6,6 +6,9 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
+import android.media.MediaPlayer;
+import android.os.CountDownTimer;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -21,6 +24,7 @@ import com.example.ctngus.QuanCoTuong.QuanTot;
 import com.example.ctngus.QuanCoTuong.QuanTuong;
 import com.example.ctngus.QuanCoTuong.QuanXe;
 import com.example.ctngus.R;
+import com.example.ctngus.TroChoi.AmThanh.HieuUngAmThanh;
 
 public class VeTroChoi extends View {
 
@@ -32,6 +36,11 @@ public class VeTroChoi extends View {
      private int topMargin;
      private int side;
      private int radius;
+     private ToaDo toaDoDaChon = null;
+     private boolean isMoving = false;
+     private MediaPlayer player = MediaPlayer.create(getContext(), R.raw.danh_co_sound);
+     //Điểm hiện tại của quân cờ đang di chuyển trên đường đi
+     private Point cachDiem = new Point(0, 0);
 
      public VeTroChoi(Context context, TroChoi troChoi) {
           super(context);
@@ -193,24 +202,82 @@ public class VeTroChoi extends View {
           }
 
           radius = (int) (0.45 * side);
-          ToaDo toaDoDaChon = troChoi.getToaDoDaChon();
-          paint.setColor(Color.BLACK);
-          if (toaDoDaChon != null) {
+
+
+          //Xác định điểm tâm để vẽ
+          int x = leftMargin + j * side;
+          int y = topMargin + i * side;
+          int borderColor = Color.BLACK;
+          //Vẽ trong giai đoạn chọn được quân cờ
+          if (troChoi.getGiaiDoan().equals(GiaiDoan.DA_CHON_QUAN_CO)) {
+               toaDoDaChon = troChoi.getToaDoDaChon();
                if (toaDoDaChon.getQuanCo() == quanCo) {
-                    paint.setColor(Color.parseColor("#fedaa4"));
+                    borderColor = Color.parseColor("#fedaa4");
                }
+          } else {
+               if (troChoi.getGiaiDoan().equals(GiaiDoan.DANH_CO)) {
+                    final ToaDo toaDoDen = troChoi.getToaDoDaChon();
+                    if (toaDoDen.getQuanCo() == quanCo) {
+                         //Chưa di chuyển
+                         if (!isMoving) {
+                              isMoving = true;
+                              int x1 = toaDoDaChon.getX();
+                              int y1 = toaDoDaChon.getY();
+                              int x2 = toaDoDen.getX();
+                              int y2 = toaDoDen.getY();
+                              cachDiem.x = (x2 - x1) * side;
+                              cachDiem.y = (y2 - y1) * side;
+                              Log.d("Moving", String.valueOf(cachDiem.x) + ", " + String.valueOf(cachDiem.y));
+                              final int doDoiY = cachDiem.y;
+                              final int doDoiX = cachDiem.x;
+                              Log.d("Moving", String.valueOf(doDoiX));
+                              Log.d("Moving", String.valueOf(doDoiY));
+
+                              HieuUngAmThanh hieuUngAmThanh = new HieuUngAmThanh(player);
+                              hieuUngAmThanh.run();
+                              CountDownTimer timer = new CountDownTimer(90, 10) {
+                                   @Override
+                                   public void onTick(long millisUntilFinished) {
+                                        cachDiem.x = cachDiem.x - (int) ((float) doDoiX / 9);
+                                        cachDiem.y = cachDiem.y - (int) ((float) doDoiY / 9);
+                                        invalidate();
+                                   }
+
+                                   @Override
+                                   public void onFinish() {
+                                        cachDiem.x = 0;
+                                        cachDiem.y = 0;
+                                        isMoving = false;
+                                        troChoi.setGiaiDoan(GiaiDoan.CHON_QUAN_CO);
+                                        invalidate();
+                                   }
+                              };
+                              timer.start();
+                         }
+                         x -= cachDiem.x;
+                         y -= cachDiem.y;
+                    }
+               }
+//               ToaDo toaDoDaChon = troChoi.getToaDoDaChon();
+//               if (toaDoDaChon.getQuanCo() == quanCo) {
+
+//               }
           }
-          canvas.drawCircle(leftMargin + j * side, topMargin + i * side, radius, paint);
+          veQuanCo(canvas, x, y, chessSymbol, chessColor, borderColor);
+     }
+
+     private void veQuanCo(Canvas canvas, int x, int y, String chessSymbol, int chessColor, int borderColor) {
+          paint.setColor(borderColor);
+          canvas.drawCircle(x, y, radius, paint);
           paint.setColor(Color.parseColor("#fedaa4"));
-          canvas.drawCircle(leftMargin + j * side, topMargin + i * side, (int) (radius - radius / 10), paint);
+          canvas.drawCircle(x, y, (int) (radius - radius / 10), paint);
           paint.setColor(chessColor);
-          canvas.drawCircle(leftMargin + j * side, topMargin + i * side, (int) (radius - radius / 7.5), paint);
+          canvas.drawCircle(x, y, (int) (radius - radius / 7), paint);
           paint.setColor(Color.parseColor("#fedaa4"));
-          canvas.drawCircle(leftMargin + j * side, topMargin + i * side, (int) (radius - radius / 5), paint);
+          canvas.drawCircle(x, y, (int) (radius - radius / 5), paint);
           paint.setColor(chessColor);
           paint.setTextSize(radius);
           paint.setTextAlign(Paint.Align.CENTER);
-          canvas.drawText(chessSymbol, leftMargin + j * side, topMargin + i * side + (int) ((radius - radius / 5) / 2), paint);
+          canvas.drawText(chessSymbol, x, y + (int) ((radius - radius / 5) / 2), paint);
      }
-
 }
