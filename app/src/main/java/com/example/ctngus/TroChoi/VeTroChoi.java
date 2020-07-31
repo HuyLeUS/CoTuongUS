@@ -1,12 +1,17 @@
 package com.example.ctngus.TroChoi;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.core.view.MotionEventCompat;
 
 import com.example.ctngus.QuanCoTuong.Phe;
 import com.example.ctngus.QuanCoTuong.QuanCo;
@@ -91,6 +96,28 @@ public class VeTroChoi extends View {
 
      }
 
+     @SuppressLint("ClickableViewAccessibility")
+     @Override
+     public boolean onTouchEvent(MotionEvent event) {
+          int pointerIndex = event.getActionIndex();
+          int action = event.getAction();
+          switch (action) {
+               case MotionEvent.ACTION_DOWN: {
+                    int x = (int) event.getX();
+                    int y = (int) event.getY();
+                    Log.d("Touch x, y", x + ", " + y);
+                    int j = (x - leftMargin + (int) (0.45 * side)) / side;
+                    int i = (y - topMargin + (int) (0.45 * side)) / side;
+                    Log.d("Touch i, j", i + ", " + j);
+                    ToaDo toaDo = troChoi.getBanCo().getMangToaDo()[i][j];
+                    troChoi.xuLySuKienTroChoi(toaDo);
+                    break;
+               }
+          }
+          invalidate();
+          return true;
+     }
+
      private void drawChess(Canvas canvas, QuanCo quanCo, int i, int j) {
           String chessSymbol = "";
           if (quanCo instanceof QuanXe) {
@@ -148,7 +175,13 @@ public class VeTroChoi extends View {
           }
 
           int radius = (int) (0.45 * side);
+          ToaDo toaDoDaChon = troChoi.getToaDoDaChon();
           paint.setColor(Color.BLACK);
+          if (toaDoDaChon != null) {
+               if (toaDoDaChon.getQuanCo() == quanCo) {
+                    paint.setColor(Color.parseColor("#fedaa4"));
+               }
+          }
           canvas.drawCircle(leftMargin + j * side, topMargin + i * side, radius, paint);
           paint.setColor(Color.parseColor("#fedaa4"));
           canvas.drawCircle(leftMargin + j * side, topMargin + i * side, (int) (radius - radius / 10), paint);

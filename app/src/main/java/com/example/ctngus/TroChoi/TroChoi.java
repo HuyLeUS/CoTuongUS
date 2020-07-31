@@ -9,26 +9,31 @@ public class TroChoi {
      private NguoiChoi nguoiChoiDo = new NguoiChoi(Phe.PHE_DO);
      private ToaDo toaDoDaChon = null;
 
-     public void xuLySuKienTroChoi(ToaDo toaDo)
-     {
+     public void xuLySuKienTroChoi(ToaDo toaDo) {
           NguoiChoi nguoiDangChoi;
-          if(luot.equals(nguoiChoiDen.getPhe()))
-          {
+          if (luot.equals(nguoiChoiDen.getPhe())) {
                nguoiDangChoi = nguoiChoiDen;
-          }
-          else
-          {
+          } else {
                nguoiDangChoi = nguoiChoiDo;
           }
-          if(toaDoDaChon == null)
-          {
-               nguoiDangChoi.chonToaDo(banCo, toaDo);
-          }
-          else
-          {
-               nguoiDangChoi.danhCo(banCo, toaDoDaChon, toaDo);
+          if (toaDoDaChon == null) {
+               toaDoDaChon = nguoiDangChoi.chonToaDo(banCo, toaDo);
+          } else {
+               if(toaDo.getQuanCo().getPhe().equals(luot))
+               {
+                    toaDoDaChon = nguoiDangChoi.chonToaDo(banCo, toaDo);
+                    return;
+               }
+               boolean result = nguoiDangChoi.danhCo(banCo, toaDoDaChon, toaDo);
                toaDoDaChon = null;
+               if(result) {
+                    luot = Phe.values()[(luot.ordinal() + 1) % 2];
+               }
           }
+     }
+
+     public ToaDo getToaDoDaChon() {
+          return toaDoDaChon;
      }
 
      public TroChoi() {
@@ -45,8 +50,7 @@ public class TroChoi {
           return banCo;
      }
 
-     public void choiMoi()
-     {
+     public void choiMoi() {
           banCo.xepCo();
      }
 }

@@ -105,8 +105,9 @@ public class BanCo {
           //Kiểm tra các nước không hợp lệ và loại bỏ
 
      }
-     public void thucHienDanhCo(ToaDo toaDoDaChon, ToaDo toaDoDen)
+     public boolean thucHienDanhCo(ToaDo toaDoDaChon, ToaDo toaDoDen)
      {
-          //Xử lý di chuyển, ăn quân địch
+          //Xử lý di chuyển ăn quân địch
+          return false;
      }
 }

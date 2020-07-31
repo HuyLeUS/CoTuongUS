@@ -30,8 +30,8 @@ public class NguoiChoi {
      }
      //Người chơi đánh cờ
      //Kết quả trả về true nếu đánh được false nếu ko đánh được
-     public void danhCo(BanCo banCo, ToaDo toaDoDaChon, ToaDo toaDoDen)
+     public boolean danhCo(BanCo banCo, ToaDo toaDoDaChon, ToaDo toaDoDen)
      {
-          banCo.thucHienDanhCo(toaDoDaChon, toaDoDen);
+          return banCo.thucHienDanhCo(toaDoDaChon, toaDoDen);
      }
 }
