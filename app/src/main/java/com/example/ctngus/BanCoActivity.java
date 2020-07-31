@@ -5,13 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import com.example.ctngus.TroChoi.VeTroChoi;
+import com.example.ctngus.TroChoi.TroChoi;
+
 public class BanCoActivity extends AppCompatActivity {
-    private BanCo banCo = new BanCo();
+    private TroChoi troChoi = new TroChoi();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        banCo.xepCo();
-        DrawBoard drawBoard=new DrawBoard(this, banCo);
+        troChoi.choiMoi();
+        VeTroChoi drawBoard=new VeTroChoi(this, troChoi);
         drawBoard.setBackgroundColor(Color.WHITE);
 
         setContentView(drawBoard);

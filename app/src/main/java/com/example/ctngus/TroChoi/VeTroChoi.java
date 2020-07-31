@@ -1,16 +1,12 @@
-package com.example.ctngus;
+package com.example.ctngus.TroChoi;
 
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
-
-import androidx.core.view.MotionEventCompat;
 
 import com.example.ctngus.QuanCoTuong.Phe;
 import com.example.ctngus.QuanCoTuong.QuanCo;
@@ -21,20 +17,21 @@ import com.example.ctngus.QuanCoTuong.QuanSoai;
 import com.example.ctngus.QuanCoTuong.QuanTot;
 import com.example.ctngus.QuanCoTuong.QuanTuong;
 import com.example.ctngus.QuanCoTuong.QuanXe;
+import com.example.ctngus.R;
 
-public class DrawBoard extends View {
+public class VeTroChoi extends View {
 
      private Paint paint = new Paint();
-     private BanCo banCo;
+     private TroChoi troChoi;
      private int boardHeight;
      private int boardWidth;
      private int leftMargin;
      private int topMargin;
      private int side;
 
-     public DrawBoard(Context context, BanCo banCo) {
+     public VeTroChoi(Context context, TroChoi troChoi) {
           super(context);
-          this.banCo = banCo;
+          this.troChoi = troChoi;
           init();
      }
 
@@ -82,7 +79,7 @@ public class DrawBoard extends View {
 
           canvas.drawLine(leftMargin + 3 * side, topMargin + 7 * side, leftMargin + 5 * side, topMargin + 9 * side, paint);
           canvas.drawLine(leftMargin + 5 * side, topMargin + 7 * side, leftMargin + 3 * side, topMargin + 9 * side, paint);
-          ToaDo[][] mangToaDo = banCo.getMangToaDo();
+          ToaDo[][] mangToaDo = troChoi.getBanCo().getMangToaDo();
           for (int i = 0; i < 10; i++) {
                for (int j = 0; j < 9; j++) {
                     QuanCo quanCo = mangToaDo[i][j].getQuanCo();

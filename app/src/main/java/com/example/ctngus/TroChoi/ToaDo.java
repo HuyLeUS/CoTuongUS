@@ -1,4 +1,4 @@
-package com.example.ctngus;
+package com.example.ctngus.TroChoi;
 
 import com.example.ctngus.QuanCoTuong.QuanCo;
 
@@ -6,11 +6,20 @@ public class ToaDo {
     private Integer X;
     private Integer Y;
     private QuanCo quanCo = null;
+    private boolean laDiemGoiY = false;
 
     public ToaDo(Integer x, Integer y, QuanCo quanCo) {
         X = x;
         Y = y;
         this.quanCo = quanCo;
+    }
+
+    public void setLaDiemGoiY(boolean laDiemGoiY) {
+        this.laDiemGoiY = laDiemGoiY;
+    }
+
+    public boolean isLaDiemGoiY() {
+        return laDiemGoiY;
     }
 
     public QuanCo getQuanCo() {

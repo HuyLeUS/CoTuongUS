@@ -1,4 +1,4 @@
-package com.example.ctngus;
+package com.example.ctngus.TroChoi;
 
 import com.example.ctngus.QuanCoTuong.Phe;
 import com.example.ctngus.QuanCoTuong.QuanCo;
@@ -98,5 +98,15 @@ public class BanCo {
           mangToaDo[6][4].setQuanCo(quanTotDo3);
           mangToaDo[6][6].setQuanCo(quanTotDo4);
           mangToaDo[6][8].setQuanCo(quanTotDo5);
+     }
+     public void hienThiDiemGoiY(ToaDo toaDo)
+     {
+          //Sinh ra các nước có thể đi bằng cách bật cờ laDiemGoiY trong toaDo
+          //Kiểm tra các nước không hợp lệ và loại bỏ
+
+     }
+     public void thucHienDanhCo(ToaDo toaDoDaChon, ToaDo toaDoDen)
+     {
+          //Xử lý di chuyển, ăn quân địch
      }
 }
