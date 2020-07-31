@@ -10,6 +10,8 @@ import com.example.ctngus.QuanCoTuong.QuanTot;
 import com.example.ctngus.QuanCoTuong.QuanTuong;
 import com.example.ctngus.QuanCoTuong.QuanXe;
 
+import java.util.Random;
+
 
 public class BanCo {
      private QuanCo quanXeDo1, quanXeDo2, quanMaDo1, quanMaDo2, quanTuongDo1, quanTuongDo2, quanSiDo1, quanSiDo2, quanSoaiDo,
@@ -60,6 +62,8 @@ public class BanCo {
           for (int i = 0; i < 10; i++) {
                for (int j = 0; j < 9; j++) {
                     mangToaDo[i][j] = new ToaDo(j, i, null);
+//                    Random rng = new Random();
+//                    mangToaDo[i][j].setLaDiemGoiY(rng.nextBoolean());
                }
           }
      }

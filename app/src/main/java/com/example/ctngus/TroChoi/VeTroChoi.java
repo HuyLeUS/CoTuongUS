@@ -11,8 +11,6 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-import androidx.core.view.MotionEventCompat;
-
 import com.example.ctngus.QuanCoTuong.Phe;
 import com.example.ctngus.QuanCoTuong.QuanCo;
 import com.example.ctngus.QuanCoTuong.QuanMa;
@@ -33,6 +31,7 @@ public class VeTroChoi extends View {
      private int leftMargin;
      private int topMargin;
      private int side;
+     private int radius;
 
      public VeTroChoi(Context context, TroChoi troChoi) {
           super(context);
@@ -89,16 +88,30 @@ public class VeTroChoi extends View {
                for (int j = 0; j < 9; j++) {
                     QuanCo quanCo = mangToaDo[i][j].getQuanCo();
                     if (quanCo != null) {
-                         drawChess(canvas, quanCo, i, j);
+                         veQuanCo(canvas, quanCo, i, j);
                     }
                     if (mangToaDo[i][j].getLaDiemGoiY())
                     {
-
+                         veDiemGoiY(canvas, mangToaDo[i][j]);
                     }
                }
           }
 
      }
+
+     private void veDiemGoiY(Canvas canvas, ToaDo toaDo) {
+          int red = 0x74;
+          int green = 0xb9;
+          int blue = 0xff;
+          for (int i = 10; i > 0; i--) {
+               paint.setColor(Color.argb(0xFF - i * 0x13,
+                       Math.max((int) (red - red * i * 0.025), 0),
+                       Math.max((int) (green - green * i * 0.025), 0),
+                       Math.max((int) (blue - blue * i * 0.025), 0)));
+               canvas.drawCircle(leftMargin + toaDo.getX() * side, topMargin + toaDo.getY() * side, (int) (radius * i * 0.025), paint);
+          }
+     }
+
 
      @SuppressLint("ClickableViewAccessibility")
      @Override
@@ -110,8 +123,8 @@ public class VeTroChoi extends View {
                     int x = (int) event.getX();
                     int y = (int) event.getY();
                     Log.d("Touch x, y", x + ", " + y);
-                    int j = (x - leftMargin + (int) (0.45 * side)) / side;
-                    int i = (y - topMargin + (int) (0.45 * side)) / side;
+                    int j = (x - leftMargin + radius) / side;
+                    int i = (y - topMargin + radius) / side;
                     Log.d("Touch i, j", i + ", " + j);
                     ToaDo toaDo = troChoi.getBanCo().getMangToaDo()[i][j];
                     troChoi.xuLySuKienTroChoi(toaDo);
@@ -122,7 +135,7 @@ public class VeTroChoi extends View {
           return true;
      }
 
-     private void drawChess(Canvas canvas, QuanCo quanCo, int i, int j) {
+     private void veQuanCo(Canvas canvas, QuanCo quanCo, int i, int j) {
           String chessSymbol = "";
           if (quanCo instanceof QuanXe) {
                if (quanCo.getPhe().equals(Phe.PHE_DEN)) {
@@ -178,7 +191,7 @@ public class VeTroChoi extends View {
                chessColor = Color.RED;
           }
 
-          int radius = (int) (0.45 * side);
+          radius = (int) (0.45 * side);
           ToaDo toaDoDaChon = troChoi.getToaDoDaChon();
           paint.setColor(Color.BLACK);
           if (toaDoDaChon != null) {
