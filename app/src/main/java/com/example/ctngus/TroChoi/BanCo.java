@@ -105,6 +105,7 @@ public class BanCo {
           //Kiểm tra các nước không hợp lệ và loại bỏ
 
      }
+     //Kết quả trả về true nếu đánh được false nếu ko đánh được
      public boolean thucHienDanhCo(ToaDo toaDoDaChon, ToaDo toaDoDen)
      {
           //Xử lý di chuyển ăn quân địch

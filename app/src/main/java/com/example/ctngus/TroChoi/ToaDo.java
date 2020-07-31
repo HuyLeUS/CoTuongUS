@@ -18,7 +18,7 @@ public class ToaDo {
         this.laDiemGoiY = laDiemGoiY;
     }
 
-    public boolean isLaDiemGoiY() {
+    public boolean getLaDiemGoiY() {
         return laDiemGoiY;
     }
 

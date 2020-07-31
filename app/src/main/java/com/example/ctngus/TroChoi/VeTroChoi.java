@@ -91,6 +91,10 @@ public class VeTroChoi extends View {
                     if (quanCo != null) {
                          drawChess(canvas, quanCo, i, j);
                     }
+                    if (mangToaDo[i][j].getLaDiemGoiY())
+                    {
+
+                    }
                }
           }
 
