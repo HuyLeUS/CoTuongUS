@@ -112,19 +112,18 @@ public class BanCo {
           mangToaDo[6][6].setQuanCo(quanTotDo4);
           mangToaDo[6][8].setQuanCo(quanTotDo5);
      }
-     public void hienThiDiemGoiY(ToaDo toaDo)
-     {
+
+     public void hienThiDiemGoiY(ToaDo toaDo) {
           //Sinh ra các nước có thể đi bằng cách bật cờ laDiemGoiY trong toaDo
           //Kiểm tra các nước không hợp lệ và loại bỏ
 
      }
+
      //Kết quả trả về true nếu đánh được false nếu ko đánh được
-     public boolean thucHienDanhCo(ToaDo toaDoDaChon, ToaDo toaDoDen)
-     {
+     public boolean thucHienDanhCo(ToaDo toaDoDaChon, ToaDo toaDoDen) {
           //Xử lý di chuyển ăn quân địch
           QuanCo quanCo = toaDoDaChon.getQuanCo();
-          if(toaDoDen.getLaDiemGoiY())
-          {
+          if (toaDoDen.getLaDiemGoiY()) {
                toaDoDaChon.setQuanCo(null);
                toaDoDen.setQuanCo(quanCo);
                return true;

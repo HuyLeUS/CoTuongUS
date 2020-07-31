@@ -5,6 +5,10 @@ import com.example.ctngus.QuanCoTuong.QuanCo;
 
 public class TroChoi {
      private Phe luot;
+     //Một lượt chơi gồm 3 giai đoạn:
+     //1: Chọn quân cờ
+     //2: đã chọn quân cờ
+     //3: đánh cờ
      private GiaiDoan giaiDoan = GiaiDoan.CHON_QUAN_CO;
      private BanCo banCo;
      private NguoiChoi nguoiChoiDen = new NguoiChoi(Phe.PHE_DEN);
@@ -31,16 +35,15 @@ public class TroChoi {
           if (giaiDoan.equals(GiaiDoan.CHON_QUAN_CO)) {
                //Thực hiện chọn tọa độ
                toaDoDaChon = nguoiDangChoi.chonToaDo(banCo, toaDo);
-               if(toaDoDaChon != null)
-               {
+               if (toaDoDaChon != null) {
                     giaiDoan = GiaiDoan.DA_CHON_QUAN_CO;
                }
           } else {
                //Đã chọn quân
 
-               if(giaiDoan.equals(GiaiDoan.DA_CHON_QUAN_CO)) {
+               if (giaiDoan.equals(GiaiDoan.DA_CHON_QUAN_CO)) {
                     QuanCo quanCo = toaDo.getQuanCo();
-                    if(quanCo != null) {
+                    if (quanCo != null) {
                          if (quanCo.getPhe().equals(luot)) { // Đổi quân
                               toaDoDaChon = nguoiDangChoi.chonToaDo(banCo, toaDo);
                               return;
@@ -48,7 +51,7 @@ public class TroChoi {
                     }
                     //Đánh cờ
                     boolean result = nguoiDangChoi.danhCo(banCo, toaDoDaChon, toaDo);
-                    if(result) {
+                    if (result) {
                          //Đánh thành công thì đổi lượt
                          toaDoDaChon = toaDo;
                          giaiDoan = GiaiDoan.DANH_CO;

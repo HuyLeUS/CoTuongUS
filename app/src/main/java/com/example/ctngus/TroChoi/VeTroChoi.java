@@ -215,16 +215,20 @@ public class VeTroChoi extends View {
                     borderColor = Color.parseColor("#fedaa4");
                }
           } else {
+               //Giai đoạn đánh cờ sẽ xử lý animation
                if (troChoi.getGiaiDoan().equals(GiaiDoan.DANH_CO)) {
                     final ToaDo toaDoDen = troChoi.getToaDoDaChon();
                     if (toaDoDen.getQuanCo() == quanCo) {
                          //Chưa di chuyển
                          if (!isMoving) {
                               isMoving = true;
+                              //Tọa độ đã chọn hiện giờ đang là tọa độ xuất phát của quân cờ
                               int x1 = toaDoDaChon.getX();
                               int y1 = toaDoDaChon.getY();
+                              //Tọa độ đến là tọa độ quân cờ vừa đi đến
                               int x2 = toaDoDen.getX();
                               int y2 = toaDoDen.getY();
+                              //Tính cách điểm của hoành độ và tung độ
                               cachDiem.x = (x2 - x1) * side;
                               cachDiem.y = (y2 - y1) * side;
                               Log.d("Moving", String.valueOf(cachDiem.x) + ", " + String.valueOf(cachDiem.y));
@@ -232,36 +236,39 @@ public class VeTroChoi extends View {
                               final int doDoiX = cachDiem.x;
                               Log.d("Moving", String.valueOf(doDoiX));
                               Log.d("Moving", String.valueOf(doDoiY));
-
+                              //phát âm thanh khi đánh cờ
                               HieuUngAmThanh hieuUngAmThanh = new HieuUngAmThanh(player);
                               hieuUngAmThanh.run();
                               CountDownTimer timer = new CountDownTimer(90, 10) {
                                    @Override
                                    public void onTick(long millisUntilFinished) {
+                                        // giảm cách điểm để quân cờ tiến dần đến tọa độ cần đến
                                         cachDiem.x = cachDiem.x - (int) ((float) doDoiX / 9);
                                         cachDiem.y = cachDiem.y - (int) ((float) doDoiY / 9);
-                                        invalidate();
+                                        invalidate(); // Render lại
                                    }
 
                                    @Override
                                    public void onFinish() {
+                                        //Khi kết thúc timer
+                                        //Cách điểm về 0
                                         cachDiem.x = 0;
                                         cachDiem.y = 0;
+                                        //Hạ cờ di chuyển
                                         isMoving = false;
+                                        //Chuyển về gian đoạn chọn quân cờ
                                         troChoi.setGiaiDoan(GiaiDoan.CHON_QUAN_CO);
-                                        invalidate();
+                                        invalidate(); // Render lại
                                    }
                               };
                               timer.start();
                          }
+                         // Điều chỉnh vị trí vẽ quân cờ
                          x -= cachDiem.x;
                          y -= cachDiem.y;
                     }
                }
-//               ToaDo toaDoDaChon = troChoi.getToaDoDaChon();
-//               if (toaDoDaChon.getQuanCo() == quanCo) {
 
-//               }
           }
           veQuanCo(canvas, x, y, chessSymbol, chessColor, borderColor);
      }
