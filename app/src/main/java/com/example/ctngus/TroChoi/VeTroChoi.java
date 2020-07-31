@@ -90,8 +90,7 @@ public class VeTroChoi extends View {
                     if (quanCo != null) {
                          veQuanCo(canvas, quanCo, i, j);
                     }
-                    if (mangToaDo[i][j].getLaDiemGoiY())
-                    {
+                    if (mangToaDo[i][j].getLaDiemGoiY()) {
                          veDiemGoiY(canvas, mangToaDo[i][j]);
                     }
                }
@@ -125,6 +124,8 @@ public class VeTroChoi extends View {
                     Log.d("Touch x, y", x + ", " + y);
                     int j = (x - leftMargin + radius) / side;
                     int i = (y - topMargin + radius) / side;
+                    if (i < 0 || j < 0 || i > 9 || j > 8)
+                         return false;
                     Log.d("Touch i, j", i + ", " + j);
                     ToaDo toaDo = troChoi.getBanCo().getMangToaDo()[i][j];
                     troChoi.xuLySuKienTroChoi(toaDo);
