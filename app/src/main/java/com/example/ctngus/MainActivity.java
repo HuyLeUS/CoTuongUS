@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-          btnStart = (Button) findViewById(R.id.btnStart);
+          btnStart = (Button) findViewById(R.id.btnHaiNguoi);
 
      }
 

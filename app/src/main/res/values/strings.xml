@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">Cờ Tướng US</string>
+    <string name="app_name">Cờ Tướng</string>
+    <string name="button_hai_nguoi">Đánh hai người</string>
+    <string name="button_voi_may">Đánh với máy</string>
+    <string name="button_xep_hang">Đánh xếp hạng</string>
+    <string name="button_thoat">Thoát</string>
     <string name="quan_xe_do">俥</string>
     <string name="quan_ma_do">傌</string>
     <string name="quan_tuong_do">相</string>

@@ -14,6 +14,7 @@ public class TroChoi {
      private NguoiChoi nguoiChoiDen = new NguoiChoi(Phe.PHE_DEN);
      private NguoiChoi nguoiChoiDo = new NguoiChoi(Phe.PHE_DO);
      private ToaDo toaDoDaChon = null;
+     private CheDoChoi cheDoChoi = CheDoChoi.OFFLINE_HAI_NGUOI;
 
      public void setGiaiDoan(GiaiDoan giaiDoan) {
           this.giaiDoan = giaiDoan;
@@ -83,6 +84,6 @@ public class TroChoi {
      }
 
      public void choiMoi() {
-          banCo.xepCo();
+          banCo.xepCo(Phe.PHE_DEN);
      }
 }
