@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.ctngus.TroChoi.CheDoChoi;
+
 public class MainActivity extends AppCompatActivity {
 
      private Button btnStart;
@@ -25,9 +27,10 @@ public class MainActivity extends AppCompatActivity {
      }
 
 
-     public void batDau(View view) {
+     public void batDauChoiCheDoHaiNguoi(View view) {
 
           Intent intent = new Intent(this, BanCoActivity.class);
+          intent.putExtra("che_do", CheDoChoi.OFFLINE_HAI_NGUOI);
           startActivity(intent);
 
      }

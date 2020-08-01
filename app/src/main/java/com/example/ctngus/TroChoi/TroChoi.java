@@ -69,9 +69,10 @@ public class TroChoi {
           return toaDoDaChon;
      }
 
-     public TroChoi() {
+     public TroChoi(CheDoChoi cheDoChoi) {
           luot = Phe.PHE_DEN;
           banCo = new BanCo();
+          this.cheDoChoi = cheDoChoi;
      }
 
      public TroChoi(Phe luot, BanCo banCo) {

@@ -31,7 +31,7 @@
         android:layout_width="280dp"
         android:layout_height="60dp"
         android:text="@string/button_hai_nguoi"
-        android:onClick="batDau"
+        android:onClick="batDauChoiCheDoHaiNguoi"
         style="@style/Widget.AppCompat.Button.Colored"
         android:theme="@style/AppTheme.Button"
         />
