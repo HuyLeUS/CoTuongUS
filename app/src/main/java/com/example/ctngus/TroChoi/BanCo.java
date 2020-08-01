@@ -118,7 +118,7 @@ public class BanCo {
      public void hienThiDiemGoiY(ToaDo toaDo) {
           //Sinh ra các nước có thể đi bằng cách bật cờ laDiemGoiY trong toaDo
           //Kiểm tra các nước không hợp lệ và loại bỏ
-
+          toaDo.getQuanCo().duDoanNuocDi(toaDo, mangToaDo);
      }
 
      //Kết quả trả về true nếu đánh được false nếu ko đánh được
