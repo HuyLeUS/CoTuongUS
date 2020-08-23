@@ -10,6 +10,7 @@ import com.example.ctngus.QuanCoTuong.QuanTot;
 import com.example.ctngus.QuanCoTuong.QuanTuong;
 import com.example.ctngus.QuanCoTuong.QuanXe;
 
+import java.util.List;
 import java.util.Random;
 
 
@@ -30,29 +31,19 @@ public class BanCo {
           return pheDuoiBanCo;
      }
 
-     public ToaDo getToaDoQuanSoai(Phe phe)
-     {
-          if(phe.equals(pheDuoiBanCo))
-          {
-               for(int i = 7; i < 10; i++)
-               {
-                    for (int j = 3; j < 6; j ++)
-                    {
-                         if(mangToaDo[i][j].getQuanCo() instanceof QuanSoai)
-                         {
+     public ToaDo getToaDoQuanSoai(Phe phe) {
+          if (phe.equals(pheDuoiBanCo)) {
+               for (int i = 7; i < 10; i++) {
+                    for (int j = 3; j < 6; j++) {
+                         if (mangToaDo[i][j].getQuanCo() instanceof QuanSoai) {
                               return mangToaDo[i][j];
                          }
                     }
                }
-          }
-          else
-          {
-               for(int i = 0; i < 3; i++)
-               {
-                    for (int j = 3; j < 6; j ++)
-                    {
-                         if(mangToaDo[i][j].getQuanCo() instanceof QuanSoai)
-                         {
+          } else {
+               for (int i = 0; i < 3; i++) {
+                    for (int j = 3; j < 6; j++) {
+                         if (mangToaDo[i][j].getQuanCo() instanceof QuanSoai) {
                               return mangToaDo[i][j];
                          }
                     }
@@ -61,8 +52,7 @@ public class BanCo {
           return null;
      }
 
-     public boolean coBiChieu(Phe phe)
-     {
+     public boolean coBiChieu(Phe phe) {
           ToaDo toaDoQuanSoai = getToaDoQuanSoai(phe);
           int i = toaDoQuanSoai.getY();
           int j = toaDoQuanSoai.getX();
@@ -70,40 +60,36 @@ public class BanCo {
           int dj = 1;
           boolean coBiChan = false;
           //Kiểm tra tốt chiếu
-          if(i + 1 < 10) {
+          if (i + 1 < 10) {
                if (mangToaDo[i + 1][j].getQuanCo() instanceof QuanTot) {
-                    if(!mangToaDo[i + 1][j].getQuanCo().getPhe().equals(phe))
-                    {
+                    if (!mangToaDo[i + 1][j].getQuanCo().getPhe().equals(phe)) {
                          return true;
                     }
                }
           }
-          if(i - 1 >= 0) {
+          if (i - 1 >= 0) {
                if (mangToaDo[i - 1][j].getQuanCo() instanceof QuanTot) {
-                    if(!mangToaDo[i - 1][j].getQuanCo().getPhe().equals(phe))
-                    {
+                    if (!mangToaDo[i - 1][j].getQuanCo().getPhe().equals(phe)) {
                          return true;
                     }
                }
           }
-          if(j - 1 >= 0) {
+          if (j - 1 >= 0) {
                if (mangToaDo[i][j - 1].getQuanCo() instanceof QuanTot) {
-                    if(!mangToaDo[i][j - 1].getQuanCo().getPhe().equals(phe))
-                    {
+                    if (!mangToaDo[i][j - 1].getQuanCo().getPhe().equals(phe)) {
                          return true;
                     }
                }
           }
-          if(j + 1 < 9) {
+          if (j + 1 < 9) {
                if (mangToaDo[i][j + 1].getQuanCo() instanceof QuanTot) {
-                    if(!mangToaDo[i][j + 1].getQuanCo().getPhe().equals(phe))
-                    {
+                    if (!mangToaDo[i][j + 1].getQuanCo().getPhe().equals(phe)) {
                          return true;
                     }
                }
           }
-          //Kiểm tra xe và pháo chiếu
-          while(i + di < 10) {
+          //Kiểm tra xe, pháo chiếu và mặt tướng
+          while (i + di < 10) {
                if (mangToaDo[i + di][j].getQuanCo() != null) {
                     if (!coBiChan) {
                          coBiChan = true;
@@ -111,6 +97,9 @@ public class BanCo {
                               if (!mangToaDo[i + di][j].getQuanCo().getPhe().equals(phe)) {
                                    return true;
                               }
+                         }
+                         if (mangToaDo[i + di][j].getQuanCo() instanceof QuanSoai) {
+                              return true;
                          }
                     } else {
                          if (mangToaDo[i + di][j].getQuanCo() instanceof QuanPhao) {
@@ -126,7 +115,7 @@ public class BanCo {
           }
           di = 1;
           coBiChan = false;
-          while(i - di >= 0) {
+          while (i - di >= 0) {
                if (mangToaDo[i - di][j].getQuanCo() != null) {
                     if (!coBiChan) {
                          coBiChan = true;
@@ -134,6 +123,9 @@ public class BanCo {
                               if (!mangToaDo[i - di][j].getQuanCo().getPhe().equals(phe)) {
                                    return true;
                               }
+                         }
+                         if (mangToaDo[i - di][j].getQuanCo() instanceof QuanSoai) {
+                              return true;
                          }
                     } else {
                          if (mangToaDo[i - di][j].getQuanCo() instanceof QuanPhao) {
@@ -148,7 +140,7 @@ public class BanCo {
                di++;
           }
           coBiChan = false;
-          while(j - dj >= 0) {
+          while (j - dj >= 0) {
                if (mangToaDo[i][j - dj].getQuanCo() != null) {
                     if (!coBiChan) {
                          coBiChan = true;
@@ -171,7 +163,7 @@ public class BanCo {
           }
           dj = 1;
           coBiChan = false;
-          while(j + dj < 9) {
+          while (j + dj < 9) {
                if (mangToaDo[i][j + dj].getQuanCo() != null) {
                     if (!coBiChan) {
                          if (mangToaDo[i][j + dj].getQuanCo() instanceof QuanXe) {
@@ -192,20 +184,19 @@ public class BanCo {
                dj++;
           }
           //Kiểm tra mã chiếu
-          if(i - 2 >= 0)
-          {
-               if(j - 1 >= 0) {
+          if (i - 2 >= 0) {
+               if (j - 1 >= 0) {
                     if (mangToaDo[i - 2][j - 1].getQuanCo() instanceof QuanMa) {
-                         if(!mangToaDo[i - 2][j - 1].getQuanCo().getPhe().equals(phe)) {
+                         if (!mangToaDo[i - 2][j - 1].getQuanCo().getPhe().equals(phe)) {
                               if (mangToaDo[i - 1][j - 1].getQuanCo() == null) {
                                    return true;
                               }
                          }
                     }
                }
-               if(j + 1 < 9) {
+               if (j + 1 < 9) {
                     if (mangToaDo[i - 2][j + 1].getQuanCo() instanceof QuanMa) {
-                         if(!mangToaDo[i - 2][j + 1].getQuanCo().getPhe().equals(phe)) {
+                         if (!mangToaDo[i - 2][j + 1].getQuanCo().getPhe().equals(phe)) {
                               if (mangToaDo[i - 1][j + 1].getQuanCo() == null) {
                                    return true;
                               }
@@ -213,20 +204,19 @@ public class BanCo {
                     }
                }
           }
-          if(i + 2 < 10)
-          {
-               if(j - 1 >= 0) {
+          if (i + 2 < 10) {
+               if (j - 1 >= 0) {
                     if (mangToaDo[i + 2][j - 1].getQuanCo() instanceof QuanMa) {
-                         if(!mangToaDo[i + 2][j - 1].getQuanCo().getPhe().equals(phe)) {
+                         if (!mangToaDo[i + 2][j - 1].getQuanCo().getPhe().equals(phe)) {
                               if (mangToaDo[i + 1][j - 1].getQuanCo() == null) {
                                    return true;
                               }
                          }
                     }
                }
-               if(j + 1 < 9) {
+               if (j + 1 < 9) {
                     if (mangToaDo[i + 2][j + 1].getQuanCo() instanceof QuanMa) {
-                         if(!mangToaDo[i + 2][j + 1].getQuanCo().getPhe().equals(phe)) {
+                         if (!mangToaDo[i + 2][j + 1].getQuanCo().getPhe().equals(phe)) {
                               if (mangToaDo[i + 1][j + 1].getQuanCo() == null) {
                                    return true;
                               }
@@ -234,20 +224,19 @@ public class BanCo {
                     }
                }
           }
-          if(j - 2 >= 0)
-          {
-               if(i - 1 >= 0) {
+          if (j - 2 >= 0) {
+               if (i - 1 >= 0) {
                     if (mangToaDo[i - 1][j - 2].getQuanCo() instanceof QuanMa) {
-                         if(!mangToaDo[i - 1][j - 2].getQuanCo().getPhe().equals(phe)) {
+                         if (!mangToaDo[i - 1][j - 2].getQuanCo().getPhe().equals(phe)) {
                               if (mangToaDo[i - 1][j - 1].getQuanCo() == null) {
                                    return true;
                               }
                          }
                     }
                }
-               if(i + 1 < 10) {
+               if (i + 1 < 10) {
                     if (mangToaDo[i + 1][j - 2].getQuanCo() instanceof QuanMa) {
-                         if(!mangToaDo[i + 1][j - 2].getQuanCo().getPhe().equals(phe)) {
+                         if (!mangToaDo[i + 1][j - 2].getQuanCo().getPhe().equals(phe)) {
                               if (mangToaDo[i + 1][j - 1].getQuanCo() == null) {
                                    return true;
                               }
@@ -255,20 +244,19 @@ public class BanCo {
                     }
                }
           }
-          if(j + 2 < 9)
-          {
-               if(i - 1 >= 0) {
+          if (j + 2 < 9) {
+               if (i - 1 >= 0) {
                     if (mangToaDo[i - 1][j + 2].getQuanCo() instanceof QuanMa) {
-                         if(!mangToaDo[i - 1][j + 2].getQuanCo().getPhe().equals(phe)) {
+                         if (!mangToaDo[i - 1][j + 2].getQuanCo().getPhe().equals(phe)) {
                               if (mangToaDo[i - 1][j + 1].getQuanCo() == null) {
                                    return true;
                               }
                          }
                     }
                }
-               if(i + 1 < 10) {
+               if (i + 1 < 10) {
                     if (mangToaDo[i + 1][j + 2].getQuanCo() instanceof QuanMa) {
-                         if(!mangToaDo[i + 1][j + 2].getQuanCo().getPhe().equals(phe)) {
+                         if (!mangToaDo[i + 1][j + 2].getQuanCo().getPhe().equals(phe)) {
                               if (mangToaDo[i + 1][j + 1].getQuanCo() == null) {
                                    return true;
                               }
@@ -378,7 +366,26 @@ public class BanCo {
           //Sinh ra các nước có thể đi bằng cách bật cờ laDiemGoiY trong toaDo
           //Kiểm tra các nước không hợp lệ và loại bỏ
           xoaDiemGoiY();
-          toaDo.getQuanCo().duDoanNuocDi(this, toaDo);
+          List<ToaDo> danhSachNuocDi = toaDo.getQuanCo().duDoanNuocDi(this, toaDo);
+          for(ToaDo toaDoGoiY : danhSachNuocDi) {
+               toaDoGoiY.setLaDiemGoiY(true);
+               if (toaDoGoiY.getQuanCo() != null) {
+                    if (toaDo.getQuanCo().getPhe().equals(toaDoGoiY.getQuanCo().getPhe())) {
+                         toaDoGoiY.setLaDiemGoiY(false);
+                    }
+               }
+               if (toaDoGoiY.getLaDiemGoiY()) {
+                    QuanCo quanCoBiAn = toaDoGoiY.getQuanCo();
+                    QuanCo quanCoDangXet = toaDo.getQuanCo();
+                    toaDoGoiY.setQuanCo(quanCoDangXet);
+                    toaDo.setQuanCo(null);
+                    if (coBiChieu(quanCoDangXet.getPhe())) {
+                         toaDoGoiY.setLaDiemGoiY(false);
+                    }
+                    toaDo.setQuanCo(quanCoDangXet);
+                    toaDoGoiY.setQuanCo(quanCoBiAn);
+               }
+          }
      }
 
      //Kết quả trả về true nếu đánh được false nếu ko đánh được
