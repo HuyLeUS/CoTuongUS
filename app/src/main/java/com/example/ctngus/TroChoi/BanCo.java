@@ -30,6 +30,37 @@ public class BanCo {
           return pheDuoiBanCo;
      }
 
+     public ToaDo getToaDoQuanSoai(Phe phe)
+     {
+          if(phe.equals(pheDuoiBanCo))
+          {
+               for(int i = 7; i < 10; i++)
+               {
+                    for (int j = 3; j < 6; j ++)
+                    {
+                         if(mangToaDo[i][j].getQuanCo() instanceof QuanSoai)
+                         {
+                              return mangToaDo[i][j];
+                         }
+                    }
+               }
+          }
+          else
+          {
+               for(int i = 0; i < 3; i++)
+               {
+                    for (int j = 3; j < 6; j ++)
+                    {
+                         if(mangToaDo[i][j].getQuanCo() instanceof QuanSoai)
+                         {
+                              return mangToaDo[i][j];
+                         }
+                    }
+               }
+          }
+          return null;
+     }
+
      public ToaDo[][] getMangToaDo() {
           return mangToaDo;
      }
@@ -128,6 +159,7 @@ public class BanCo {
      public void hienThiDiemGoiY(ToaDo toaDo) {
           //Sinh ra các nước có thể đi bằng cách bật cờ laDiemGoiY trong toaDo
           //Kiểm tra các nước không hợp lệ và loại bỏ
+          xoaDiemGoiY();
           toaDo.getQuanCo().duDoanNuocDi(this, toaDo);
      }
 

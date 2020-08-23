@@ -14,6 +14,17 @@ public class QuanSoai extends QuanCo {
         ToaDo[][] mangToaDo = banCo.getMangToaDo();
         //Nằm ở bàn cờ dưới
         if (getPhe().equals(banCo.getPheDuoiBanCo())) {
+            ToaDo toaDoQuanSoaiDich = banCo.getToaDoQuanSoai(Phe.values()[(getPhe().ordinal() + 1) % 2]);
+            int jMatTuong = toaDoQuanSoaiDich.getX();
+            int iGioiHan = 10;
+            for(int k = toaDoQuanSoaiDich.getY() + 1; k < 10; k++)
+            {
+                if(mangToaDo[k][toaDoQuanSoaiDich.getX()].getQuanCo() != null)
+                {
+                    iGioiHan = k;
+                    break;
+                }
+            }
             if (i + 1 < 10) {
                 mangToaDo[i + 1][j].setLaDiemGoiY(true);
                 if (mangToaDo[i + 1][j].getQuanCo() != null) {
@@ -30,7 +41,7 @@ public class QuanSoai extends QuanCo {
                     }
                 }
             }
-            if (j + 1 < 6) {
+            if (j + 1 < 6 && (j + 1 != jMatTuong || i > iGioiHan)) {
                 mangToaDo[i][j + 1].setLaDiemGoiY(true);
                 if (mangToaDo[i][j + 1].getQuanCo() != null) {
                     if (mangToaDo[i][j + 1].getQuanCo().getPhe().equals(getPhe())) {
@@ -38,7 +49,7 @@ public class QuanSoai extends QuanCo {
                     }
                 }
             }
-            if (j - 1 >= 3) {
+            if (j - 1 >= 3 && (j - 1 != jMatTuong || i > iGioiHan)) {
                 mangToaDo[i][j - 1].setLaDiemGoiY(true);
                 if (mangToaDo[i][j - 1].getQuanCo() != null) {
                     if (mangToaDo[i][j - 1].getQuanCo().getPhe().equals(getPhe())) {
@@ -48,6 +59,17 @@ public class QuanSoai extends QuanCo {
             }
             //Nằm ở bàn cờ trên
         } else {
+            ToaDo toaDoQuanSoaiDich = banCo.getToaDoQuanSoai(Phe.values()[(getPhe().ordinal() + 1) % 2]);
+            int jMatTuong = toaDoQuanSoaiDich.getX();
+            int iGioiHan = -1;
+            for(int k = toaDoQuanSoaiDich.getY() - 1; k >= 0; k--)
+            {
+                if(mangToaDo[k][toaDoQuanSoaiDich.getX()].getQuanCo() != null)
+                {
+                    iGioiHan = k;
+                    break;
+                }
+            }
             if (i + 1 < 3) {
                 mangToaDo[i + 1][j].setLaDiemGoiY(true);
                 if (mangToaDo[i + 1][j].getQuanCo() != null) {
@@ -64,7 +86,7 @@ public class QuanSoai extends QuanCo {
                     }
                 }
             }
-            if (j + 1 < 6) {
+            if (j + 1 < 6 && (j + 1 != jMatTuong || i < iGioiHan)) {
                 mangToaDo[i][j + 1].setLaDiemGoiY(true);
                 if (mangToaDo[i][j + 1].getQuanCo() != null) {
                     if (mangToaDo[i][j + 1].getQuanCo().getPhe().equals(getPhe())) {
@@ -72,7 +94,7 @@ public class QuanSoai extends QuanCo {
                     }
                 }
             }
-            if (j - 1 >= 3) {
+            if (j - 1 >= 3 && (j - 1 != jMatTuong || i < iGioiHan)) {
                 mangToaDo[i][j - 1].setLaDiemGoiY(true);
                 if (mangToaDo[i][j - 1].getQuanCo() != null) {
                     if (mangToaDo[i][j - 1].getQuanCo().getPhe().equals(getPhe())) {

@@ -11,6 +11,7 @@ public class QuanTuong extends QuanCo {
     public void duDoanNuocDi(BanCo banCo, ToaDo toaDo) {
         int i = toaDo.getY();
         int j = toaDo.getX();
+        int jMatTuong = -1;
         ToaDo[][] mangToaDo = banCo.getMangToaDo();
         //Nằm ở bàn cờ dưới
         if (getPhe().equals(banCo.getPheDuoiBanCo())) {
