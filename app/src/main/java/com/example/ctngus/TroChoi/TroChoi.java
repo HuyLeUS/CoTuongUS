@@ -1,5 +1,7 @@
 package com.example.ctngus.TroChoi;
 
+import android.util.Log;
+
 import com.example.ctngus.QuanCoTuong.Phe;
 import com.example.ctngus.QuanCoTuong.QuanCo;
 
@@ -57,6 +59,7 @@ public class TroChoi {
                          toaDoDaChon = toaDo;
                          giaiDoan = GiaiDoan.DANH_CO;
                          luot = Phe.values()[(luot.ordinal() + 1) % 2];
+                         Log.d("Chiếu", String.valueOf(banCo.coBiChieu(luot)));
                     }
 
                }

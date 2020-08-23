@@ -61,6 +61,224 @@ public class BanCo {
           return null;
      }
 
+     public boolean coBiChieu(Phe phe)
+     {
+          ToaDo toaDoQuanSoai = getToaDoQuanSoai(phe);
+          int i = toaDoQuanSoai.getY();
+          int j = toaDoQuanSoai.getX();
+          int di = 1;
+          int dj = 1;
+          boolean coBiChan = false;
+          //Kiểm tra tốt chiếu
+          if(i + 1 < 10) {
+               if (mangToaDo[i + 1][j].getQuanCo() instanceof QuanTot) {
+                    if(!mangToaDo[i + 1][j].getQuanCo().getPhe().equals(phe))
+                    {
+                         return true;
+                    }
+               }
+          }
+          if(i - 1 >= 0) {
+               if (mangToaDo[i - 1][j].getQuanCo() instanceof QuanTot) {
+                    if(!mangToaDo[i - 1][j].getQuanCo().getPhe().equals(phe))
+                    {
+                         return true;
+                    }
+               }
+          }
+          if(j - 1 >= 0) {
+               if (mangToaDo[i][j - 1].getQuanCo() instanceof QuanTot) {
+                    if(!mangToaDo[i][j - 1].getQuanCo().getPhe().equals(phe))
+                    {
+                         return true;
+                    }
+               }
+          }
+          if(j + 1 < 9) {
+               if (mangToaDo[i][j + 1].getQuanCo() instanceof QuanTot) {
+                    if(!mangToaDo[i][j + 1].getQuanCo().getPhe().equals(phe))
+                    {
+                         return true;
+                    }
+               }
+          }
+          //Kiểm tra xe và pháo chiếu
+          while(i + di < 10) {
+               if (mangToaDo[i + di][j].getQuanCo() != null) {
+                    if (!coBiChan) {
+                         coBiChan = true;
+                         if (mangToaDo[i + di][j].getQuanCo() instanceof QuanXe) {
+                              if (!mangToaDo[i + di][j].getQuanCo().getPhe().equals(phe)) {
+                                   return true;
+                              }
+                         }
+                    } else {
+                         if (mangToaDo[i + di][j].getQuanCo() instanceof QuanPhao) {
+                              if (!mangToaDo[i + di][j].getQuanCo().getPhe().equals(phe)) {
+                                   return true;
+                              }
+                         } else {
+                              break;
+                         }
+                    }
+               }
+               di++;
+          }
+          di = 1;
+          coBiChan = false;
+          while(i - di >= 0) {
+               if (mangToaDo[i - di][j].getQuanCo() != null) {
+                    if (!coBiChan) {
+                         coBiChan = true;
+                         if (mangToaDo[i - di][j].getQuanCo() instanceof QuanXe) {
+                              if (!mangToaDo[i - di][j].getQuanCo().getPhe().equals(phe)) {
+                                   return true;
+                              }
+                         }
+                    } else {
+                         if (mangToaDo[i - di][j].getQuanCo() instanceof QuanPhao) {
+                              if (!mangToaDo[i - di][j].getQuanCo().getPhe().equals(phe)) {
+                                   return true;
+                              }
+                         } else {
+                              break;
+                         }
+                    }
+               }
+               di++;
+          }
+          coBiChan = false;
+          while(j - dj >= 0) {
+               if (mangToaDo[i][j - dj].getQuanCo() != null) {
+                    if (!coBiChan) {
+                         coBiChan = true;
+                         if (mangToaDo[i][j - dj].getQuanCo() instanceof QuanXe) {
+                              if (!mangToaDo[i][j - dj].getQuanCo().getPhe().equals(phe)) {
+                                   return true;
+                              }
+                         }
+                    } else {
+                         if (mangToaDo[i][j - dj].getQuanCo() instanceof QuanPhao) {
+                              if (!mangToaDo[i][j - dj].getQuanCo().getPhe().equals(phe)) {
+                                   return true;
+                              }
+                         } else {
+                              break;
+                         }
+                    }
+               }
+               dj++;
+          }
+          dj = 1;
+          coBiChan = false;
+          while(j + dj < 9) {
+               if (mangToaDo[i][j + dj].getQuanCo() != null) {
+                    if (!coBiChan) {
+                         if (mangToaDo[i][j + dj].getQuanCo() instanceof QuanXe) {
+                              if (!mangToaDo[i][j + dj].getQuanCo().getPhe().equals(phe)) {
+                                   return true;
+                              }
+                         }
+                    } else {
+                         if (mangToaDo[i][j + dj].getQuanCo() instanceof QuanPhao) {
+                              if (!mangToaDo[i][j + dj].getQuanCo().getPhe().equals(phe)) {
+                                   return true;
+                              }
+                         } else {
+                              break;
+                         }
+                    }
+               }
+               dj++;
+          }
+          //Kiểm tra mã chiếu
+          if(i - 2 >= 0)
+          {
+               if(j - 1 >= 0) {
+                    if (mangToaDo[i - 2][j - 1].getQuanCo() instanceof QuanMa) {
+                         if(!mangToaDo[i - 2][j - 1].getQuanCo().getPhe().equals(phe)) {
+                              if (mangToaDo[i - 1][j - 1].getQuanCo() == null) {
+                                   return true;
+                              }
+                         }
+                    }
+               }
+               if(j + 1 < 9) {
+                    if (mangToaDo[i - 2][j + 1].getQuanCo() instanceof QuanMa) {
+                         if(!mangToaDo[i - 2][j + 1].getQuanCo().getPhe().equals(phe)) {
+                              if (mangToaDo[i - 1][j + 1].getQuanCo() == null) {
+                                   return true;
+                              }
+                         }
+                    }
+               }
+          }
+          if(i + 2 < 10)
+          {
+               if(j - 1 >= 0) {
+                    if (mangToaDo[i + 2][j - 1].getQuanCo() instanceof QuanMa) {
+                         if(!mangToaDo[i + 2][j - 1].getQuanCo().getPhe().equals(phe)) {
+                              if (mangToaDo[i + 1][j - 1].getQuanCo() == null) {
+                                   return true;
+                              }
+                         }
+                    }
+               }
+               if(j + 1 < 9) {
+                    if (mangToaDo[i + 2][j + 1].getQuanCo() instanceof QuanMa) {
+                         if(!mangToaDo[i + 2][j + 1].getQuanCo().getPhe().equals(phe)) {
+                              if (mangToaDo[i + 1][j + 1].getQuanCo() == null) {
+                                   return true;
+                              }
+                         }
+                    }
+               }
+          }
+          if(j - 2 >= 0)
+          {
+               if(i - 1 >= 0) {
+                    if (mangToaDo[i - 1][j - 2].getQuanCo() instanceof QuanMa) {
+                         if(!mangToaDo[i - 1][j - 2].getQuanCo().getPhe().equals(phe)) {
+                              if (mangToaDo[i - 1][j - 1].getQuanCo() == null) {
+                                   return true;
+                              }
+                         }
+                    }
+               }
+               if(i + 1 < 10) {
+                    if (mangToaDo[i + 1][j - 2].getQuanCo() instanceof QuanMa) {
+                         if(!mangToaDo[i + 1][j - 2].getQuanCo().getPhe().equals(phe)) {
+                              if (mangToaDo[i + 1][j - 1].getQuanCo() == null) {
+                                   return true;
+                              }
+                         }
+                    }
+               }
+          }
+          if(j + 2 < 9)
+          {
+               if(i - 1 >= 0) {
+                    if (mangToaDo[i - 1][j + 2].getQuanCo() instanceof QuanMa) {
+                         if(!mangToaDo[i - 1][j + 2].getQuanCo().getPhe().equals(phe)) {
+                              if (mangToaDo[i - 1][j + 1].getQuanCo() == null) {
+                                   return true;
+                              }
+                         }
+                    }
+               }
+               if(i + 1 < 10) {
+                    if (mangToaDo[i + 1][j + 2].getQuanCo() instanceof QuanMa) {
+                         if(!mangToaDo[i + 1][j + 2].getQuanCo().getPhe().equals(phe)) {
+                              if (mangToaDo[i + 1][j + 1].getQuanCo() == null) {
+                                   return true;
+                              }
+                         }
+                    }
+               }
+          }
+          return false;
+     }
+
      public ToaDo[][] getMangToaDo() {
           return mangToaDo;
      }
