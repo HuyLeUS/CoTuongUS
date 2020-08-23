@@ -20,6 +20,10 @@ public class QuanXe extends QuanCo {
         while (i + di < 10) {
             ToaDo toaDoDangXet = mangToaDo[i + di][j];
             danhSachCacNuocDi.add(toaDoDangXet);
+            if(toaDoDangXet.getQuanCo() != null)
+            {
+                break;
+            }
             di++;
 
         }
@@ -27,17 +31,29 @@ public class QuanXe extends QuanCo {
         while (i - di >= 0) {
             ToaDo toaDoDangXet = mangToaDo[i - di][j];
             danhSachCacNuocDi.add(toaDoDangXet);
+            if(toaDoDangXet.getQuanCo() != null)
+            {
+                break;
+            }
             di++;
         }
         while (j + dj < 9) {
             ToaDo toaDoDangXet = mangToaDo[i][j + dj];
             danhSachCacNuocDi.add(toaDoDangXet);
+            if(toaDoDangXet.getQuanCo() != null)
+            {
+                break;
+            }
             dj++;
         }
         dj = 1;
         while (j - dj >= 0) {
             ToaDo toaDoDangXet = mangToaDo[i][j - dj];
             danhSachCacNuocDi.add(toaDoDangXet);
+            if(toaDoDangXet.getQuanCo() != null)
+            {
+                break;
+            }
             dj++;
         }
 

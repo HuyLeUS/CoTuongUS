@@ -374,12 +374,14 @@ public class BanCo {
                          toaDoGoiY.setLaDiemGoiY(false);
                     }
                }
+               //Đi thử nước gợi ý
                if (toaDoGoiY.getLaDiemGoiY()) {
                     QuanCo quanCoBiAn = toaDoGoiY.getQuanCo();
                     QuanCo quanCoDangXet = toaDo.getQuanCo();
                     toaDoGoiY.setQuanCo(quanCoDangXet);
                     toaDo.setQuanCo(null);
                     if (coBiChieu(quanCoDangXet.getPhe())) {
+                         //Bị địch chiếu dẫn đến thua
                          toaDoGoiY.setLaDiemGoiY(false);
                     }
                     toaDo.setQuanCo(quanCoDangXet);
