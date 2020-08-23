@@ -8,7 +8,8 @@ public abstract class QuanCo {
     private Phe phe;
     //quan co di chuyen
 
-    abstract public void duDoanNuocDi(ToaDo toaDo, ToaDo[][] mangToaDo);
+    abstract public void duDoanNuocDi(BanCo banCo, ToaDo toaDo);
+
     public Phe getPhe() {
         return phe;
     }

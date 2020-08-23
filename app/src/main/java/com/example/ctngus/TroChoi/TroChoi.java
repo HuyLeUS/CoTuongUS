@@ -85,6 +85,6 @@ public class TroChoi {
      }
 
      public void choiMoi() {
-          banCo.xepCo(Phe.PHE_DEN);
+          banCo.xepCo();
      }
 }

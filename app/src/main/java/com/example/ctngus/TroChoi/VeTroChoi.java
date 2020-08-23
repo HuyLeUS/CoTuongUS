@@ -49,6 +49,7 @@ public class VeTroChoi extends View {
      }
 
      private void init() {
+          paint.setAntiAlias(true);
           DisplayMetrics displayMetrics = new DisplayMetrics();
           ((Activity) getContext()).getWindowManager()
                   .getDefaultDisplay()

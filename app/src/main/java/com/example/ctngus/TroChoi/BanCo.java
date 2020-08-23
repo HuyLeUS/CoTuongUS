@@ -20,6 +20,16 @@ public class BanCo {
              quanTotDen1, quanTotDen2, quanTotDen3, quanTotDen4, quanTotDen5, quanPhaoDen1, quanPhaoDen2;
      private ToaDo[][] mangToaDo = new ToaDo[10][9];
 
+     private Phe pheDuoiBanCo = Phe.PHE_DEN;
+
+     public void setPheDuoiBanCo(Phe pheDuoiBanCo) {
+          this.pheDuoiBanCo = pheDuoiBanCo;
+     }
+
+     public Phe getPheDuoiBanCo() {
+          return pheDuoiBanCo;
+     }
+
      public ToaDo[][] getMangToaDo() {
           return mangToaDo;
      }
@@ -62,13 +72,13 @@ public class BanCo {
           for (int i = 0; i < 10; i++) {
                for (int j = 0; j < 9; j++) {
                     mangToaDo[i][j] = new ToaDo(j, i, null);
-                    Random rng = new Random();
-                    mangToaDo[i][j].setLaDiemGoiY(rng.nextBoolean());
+//                    Random rng = new Random();
+//                    mangToaDo[i][j].setLaDiemGoiY(rng.nextBoolean());
                }
           }
      }
 
-     public void xepCo(Phe pheTa) {
+     public void xepCo() {
           //Lấy tất cả quân cờ ra khỏi bàn cờ
           for (int i = 0; i < 10; i++) {
                for (int j = 0; j < 9; j++) {
@@ -77,48 +87,48 @@ public class BanCo {
 //                    mangToaDo[i][j].setLaDiemGoiY(rng.nextBoolean());
                }
           }
-          int pheDen = pheTa.equals(Phe.PHE_DEN) ? 1 : 0;
-          int pheDo = pheTa.equals(Phe.PHE_DO) ? 1 : 0;
+          int pheDen = pheDuoiBanCo.equals(Phe.PHE_DEN) ? 1 : 0;
+          int pheDo = pheDuoiBanCo.equals(Phe.PHE_DO) ? 1 : 0;
           //Xếp cờ
-          mangToaDo[pheTa.equals(Phe.PHE_DEN) ? 9 : 0][0].setQuanCo(quanXeDen1);
-          mangToaDo[pheTa.equals(Phe.PHE_DEN) ? 9 : 0][1].setQuanCo(quanMaDen1);
-          mangToaDo[pheTa.equals(Phe.PHE_DEN) ? 9 : 0][2].setQuanCo(quanTuongDen1);
-          mangToaDo[pheTa.equals(Phe.PHE_DEN) ? 9 : 0][3].setQuanCo(quanSiDen1);
-          mangToaDo[pheTa.equals(Phe.PHE_DEN) ? 9 : 0][4].setQuanCo(quanSoaiDen);
-          mangToaDo[pheTa.equals(Phe.PHE_DEN) ? 9 : 0][5].setQuanCo(quanSiDen2);
-          mangToaDo[pheTa.equals(Phe.PHE_DEN) ? 9 : 0][6].setQuanCo(quanTuongDen2);
-          mangToaDo[pheTa.equals(Phe.PHE_DEN) ? 9 : 0][7].setQuanCo(quanMaDen2);
-          mangToaDo[pheTa.equals(Phe.PHE_DEN) ? 9 : 0][8].setQuanCo(quanXeDen2);
-          mangToaDo[pheTa.equals(Phe.PHE_DEN) ? 7 : 2][1].setQuanCo(quanPhaoDen1);
-          mangToaDo[pheTa.equals(Phe.PHE_DEN) ? 7 : 2][7].setQuanCo(quanPhaoDen2);
-          mangToaDo[pheTa.equals(Phe.PHE_DEN) ? 6 : 3][0].setQuanCo(quanTotDen1);
-          mangToaDo[pheTa.equals(Phe.PHE_DEN) ? 6 : 3][2].setQuanCo(quanTotDen2);
-          mangToaDo[pheTa.equals(Phe.PHE_DEN) ? 6 : 3][4].setQuanCo(quanTotDen3);
-          mangToaDo[pheTa.equals(Phe.PHE_DEN) ? 6 : 3][6].setQuanCo(quanTotDen4);
-          mangToaDo[pheTa.equals(Phe.PHE_DEN) ? 6 : 3][8].setQuanCo(quanTotDen5);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DEN) ? 9 : 0][0].setQuanCo(quanXeDen1);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DEN) ? 9 : 0][1].setQuanCo(quanMaDen1);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DEN) ? 9 : 0][2].setQuanCo(quanTuongDen1);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DEN) ? 9 : 0][3].setQuanCo(quanSiDen1);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DEN) ? 9 : 0][4].setQuanCo(quanSoaiDen);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DEN) ? 9 : 0][5].setQuanCo(quanSiDen2);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DEN) ? 9 : 0][6].setQuanCo(quanTuongDen2);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DEN) ? 9 : 0][7].setQuanCo(quanMaDen2);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DEN) ? 9 : 0][8].setQuanCo(quanXeDen2);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DEN) ? 7 : 2][1].setQuanCo(quanPhaoDen1);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DEN) ? 7 : 2][7].setQuanCo(quanPhaoDen2);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DEN) ? 6 : 3][0].setQuanCo(quanTotDen1);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DEN) ? 6 : 3][2].setQuanCo(quanTotDen2);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DEN) ? 6 : 3][4].setQuanCo(quanTotDen3);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DEN) ? 6 : 3][6].setQuanCo(quanTotDen4);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DEN) ? 6 : 3][8].setQuanCo(quanTotDen5);
 
-          mangToaDo[pheTa.equals(Phe.PHE_DO) ? 9 : 0][0].setQuanCo(quanXeDo1);
-          mangToaDo[pheTa.equals(Phe.PHE_DO) ? 9 : 0][1].setQuanCo(quanMaDo1);
-          mangToaDo[pheTa.equals(Phe.PHE_DO) ? 9 : 0][2].setQuanCo(quanTuongDo1);
-          mangToaDo[pheTa.equals(Phe.PHE_DO) ? 9 : 0][3].setQuanCo(quanSiDo1);
-          mangToaDo[pheTa.equals(Phe.PHE_DO) ? 9 : 0][4].setQuanCo(quanSoaiDo);
-          mangToaDo[pheTa.equals(Phe.PHE_DO) ? 9 : 0][5].setQuanCo(quanSiDo2);
-          mangToaDo[pheTa.equals(Phe.PHE_DO) ? 9 : 0][6].setQuanCo(quanTuongDo2);
-          mangToaDo[pheTa.equals(Phe.PHE_DO) ? 9 : 0][7].setQuanCo(quanMaDo2);
-          mangToaDo[pheTa.equals(Phe.PHE_DO) ? 9 : 0][8].setQuanCo(quanXeDo2);
-          mangToaDo[pheTa.equals(Phe.PHE_DO) ? 7 : 2][1].setQuanCo(quanPhaoDo1);
-          mangToaDo[pheTa.equals(Phe.PHE_DO) ? 7 : 2][7].setQuanCo(quanPhaoDo2);
-          mangToaDo[pheTa.equals(Phe.PHE_DO) ? 6 : 3][0].setQuanCo(quanTotDo1);
-          mangToaDo[pheTa.equals(Phe.PHE_DO) ? 6 : 3][2].setQuanCo(quanTotDo2);
-          mangToaDo[pheTa.equals(Phe.PHE_DO) ? 6 : 3][4].setQuanCo(quanTotDo3);
-          mangToaDo[pheTa.equals(Phe.PHE_DO) ? 6 : 3][6].setQuanCo(quanTotDo4);
-          mangToaDo[pheTa.equals(Phe.PHE_DO) ? 6 : 3][8].setQuanCo(quanTotDo5);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DO) ? 9 : 0][0].setQuanCo(quanXeDo1);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DO) ? 9 : 0][1].setQuanCo(quanMaDo1);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DO) ? 9 : 0][2].setQuanCo(quanTuongDo1);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DO) ? 9 : 0][3].setQuanCo(quanSiDo1);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DO) ? 9 : 0][4].setQuanCo(quanSoaiDo);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DO) ? 9 : 0][5].setQuanCo(quanSiDo2);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DO) ? 9 : 0][6].setQuanCo(quanTuongDo2);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DO) ? 9 : 0][7].setQuanCo(quanMaDo2);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DO) ? 9 : 0][8].setQuanCo(quanXeDo2);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DO) ? 7 : 2][1].setQuanCo(quanPhaoDo1);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DO) ? 7 : 2][7].setQuanCo(quanPhaoDo2);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DO) ? 6 : 3][0].setQuanCo(quanTotDo1);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DO) ? 6 : 3][2].setQuanCo(quanTotDo2);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DO) ? 6 : 3][4].setQuanCo(quanTotDo3);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DO) ? 6 : 3][6].setQuanCo(quanTotDo4);
+          mangToaDo[pheDuoiBanCo.equals(Phe.PHE_DO) ? 6 : 3][8].setQuanCo(quanTotDo5);
      }
 
      public void hienThiDiemGoiY(ToaDo toaDo) {
           //Sinh ra các nước có thể đi bằng cách bật cờ laDiemGoiY trong toaDo
           //Kiểm tra các nước không hợp lệ và loại bỏ
-          toaDo.getQuanCo().duDoanNuocDi(toaDo, mangToaDo);
+          toaDo.getQuanCo().duDoanNuocDi(this, toaDo);
      }
 
      //Kết quả trả về true nếu đánh được false nếu ko đánh được
@@ -128,8 +138,17 @@ public class BanCo {
           if (toaDoDen.getLaDiemGoiY()) {
                toaDoDaChon.setQuanCo(null);
                toaDoDen.setQuanCo(quanCo);
+               xoaDiemGoiY();
                return true;
           }
           return false;
+     }
+
+     private void xoaDiemGoiY() {
+          for (int i = 0; i < 10; i++) {
+               for (int j = 0; j < 9; j++) {
+                    mangToaDo[i][j].setLaDiemGoiY(false);
+               }
+          }
      }
 }
