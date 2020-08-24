@@ -17,13 +17,29 @@ public class TroChoi {
      private NguoiChoi nguoiChoiDo = new NguoiChoi(Phe.PHE_DO);
      private ToaDo toaDoDaChon = null;
      private CheDoChoi cheDoChoi = CheDoChoi.OFFLINE_HAI_NGUOI;
-
+     private boolean dangDau = true;
      public void setGiaiDoan(GiaiDoan giaiDoan) {
           this.giaiDoan = giaiDoan;
      }
 
+
+
      public GiaiDoan getGiaiDoan() {
           return giaiDoan;
+     }
+
+     public Phe kiemTraPheThang()
+     {
+          if(banCo.biChieuBi(Phe.PHE_DEN))
+          {
+               dangDau = false;
+               return Phe.PHE_DO;
+          }
+          if(banCo.biChieuBi(Phe.PHE_DO)) {
+               dangDau = false;
+               return Phe.PHE_DEN;
+          }
+          return null;
      }
 
      public void xuLySuKienTroChoi(ToaDo toaDo) {
@@ -59,7 +75,8 @@ public class TroChoi {
                          toaDoDaChon = toaDo;
                          giaiDoan = GiaiDoan.DANH_CO;
                          luot = Phe.values()[(luot.ordinal() + 1) % 2];
-                         Log.d("Chiếu", String.valueOf(banCo.coBiChieu(luot)));
+                         Log.d("Chiếu", String.valueOf(banCo.biChieu(luot)));
+                         Log.d("Chiếu bí", String.valueOf(banCo.biChieuBi(luot)));
                     }
 
                }
@@ -89,5 +106,9 @@ public class TroChoi {
 
      public void choiMoi() {
           banCo.xepCo();
+     }
+
+     public boolean isDangDau() {
+          return dangDau;
      }
 }

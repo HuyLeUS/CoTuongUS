@@ -105,7 +105,32 @@ public class VeTroChoi extends View {
                     }
                }
           }
+          if(troChoi.getGiaiDoan().equals(GiaiDoan.CHON_QUAN_CO)) {
+               Phe pheThang = troChoi.kiemTraPheThang();
+               if (pheThang != null) {
+                    if (pheThang.equals(Phe.PHE_DEN)) {
+                         veKetQua(canvas, Phe.PHE_DEN);
+                    } else {
+                         veKetQua(canvas, Phe.PHE_DO);
+                    }
+               }
+          }
+     }
 
+     private void veKetQua(Canvas canvas, Phe phe) {
+          paint.setColor(Color.parseColor("#2ecc71"));
+          paint.setTextSize(side);
+          paint.setTextAlign(Paint.Align.CENTER);
+          int yThang = (int) (topMargin - side * 1.4) ;
+          int yThua = topMargin + boardHeight + side * 2;
+          if(phe.equals(troChoi.getBanCo().getPheDuoiBanCo())) {
+               int t = yThang;
+               yThang = yThua;
+               yThua = t;
+          }
+          canvas.drawText("Thắng", leftMargin + boardWidth >> 1, yThang, paint);
+          paint.setColor(Color.parseColor("#e74c3c"));
+          canvas.drawText("Thua", leftMargin + boardWidth >> 1, yThua, paint);
      }
 
      private void veDiemGoiY(Canvas canvas, ToaDo toaDo) {
@@ -129,16 +154,18 @@ public class VeTroChoi extends View {
           int action = event.getAction();
           switch (action) {
                case MotionEvent.ACTION_DOWN: {
-                    int x = (int) event.getX();
-                    int y = (int) event.getY();
-                    Log.d("Touch x, y", x + ", " + y);
-                    int j = (x - leftMargin + radius) / side;
-                    int i = (y - topMargin + radius) / side;
-                    if (i < 0 || j < 0 || i > 9 || j > 8)
-                         return false;
-                    Log.d("Touch i, j", i + ", " + j);
-                    ToaDo toaDo = troChoi.getBanCo().getMangToaDo()[i][j];
-                    troChoi.xuLySuKienTroChoi(toaDo);
+                    if(troChoi.isDangDau()) {
+                         int x = (int) event.getX();
+                         int y = (int) event.getY();
+                         Log.d("Touch x, y", x + ", " + y);
+                         int j = (x - leftMargin + radius) / side;
+                         int i = (y - topMargin + radius) / side;
+                         if (i < 0 || j < 0 || i > 9 || j > 8)
+                              return false;
+                         Log.d("Touch i, j", i + ", " + j);
+                         ToaDo toaDo = troChoi.getBanCo().getMangToaDo()[i][j];
+                         troChoi.xuLySuKienTroChoi(toaDo);
+                    }
                     break;
                }
           }

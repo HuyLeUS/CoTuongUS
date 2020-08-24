@@ -11,7 +11,6 @@ import com.example.ctngus.QuanCoTuong.QuanTuong;
 import com.example.ctngus.QuanCoTuong.QuanXe;
 
 import java.util.List;
-import java.util.Random;
 
 
 public class BanCo {
@@ -52,7 +51,30 @@ public class BanCo {
           return null;
      }
 
-     public boolean coBiChieu(Phe phe) {
+     public boolean biChieuBi(Phe phe) {
+          for (int i = 0; i < 10; i++) {
+               for (int j = 0; j < 9; j++) {
+                    ToaDo toaDo = mangToaDo[i][j];
+                    if (toaDo.getQuanCo() != null) {
+                         QuanCo quanCo = toaDo.getQuanCo();
+                         if (quanCo.getPhe().equals(phe)) {
+                              List<ToaDo> danhSachNuocDi = quanCo.duDoanNuocDi(this, toaDo);
+                              locNuocDiGoiY(danhSachNuocDi, toaDo);
+                              for (ToaDo toaDoGoiY : danhSachNuocDi) {
+                                   if (toaDoGoiY.getLaDiemGoiY()) {
+                                        xoaDiemGoiY();
+                                        return false;
+                                   }
+                              }
+                         }
+                    }
+               }
+          }
+          xoaDiemGoiY();
+          return true;
+     }
+
+     public boolean biChieu(Phe phe) {
           ToaDo toaDoQuanSoai = getToaDoQuanSoai(phe);
           int i = toaDoQuanSoai.getY();
           int j = toaDoQuanSoai.getX();
@@ -98,6 +120,7 @@ public class BanCo {
                                    return true;
                               }
                          }
+
                          if (mangToaDo[i + di][j].getQuanCo() instanceof QuanSoai) {
                               return true;
                          }
@@ -105,6 +128,8 @@ public class BanCo {
                          if (mangToaDo[i + di][j].getQuanCo() instanceof QuanPhao) {
                               if (!mangToaDo[i + di][j].getQuanCo().getPhe().equals(phe)) {
                                    return true;
+                              } else {
+                                   break;
                               }
                          } else {
                               break;
@@ -131,6 +156,8 @@ public class BanCo {
                          if (mangToaDo[i - di][j].getQuanCo() instanceof QuanPhao) {
                               if (!mangToaDo[i - di][j].getQuanCo().getPhe().equals(phe)) {
                                    return true;
+                              } else {
+                                   break;
                               }
                          } else {
                               break;
@@ -153,6 +180,8 @@ public class BanCo {
                          if (mangToaDo[i][j - dj].getQuanCo() instanceof QuanPhao) {
                               if (!mangToaDo[i][j - dj].getQuanCo().getPhe().equals(phe)) {
                                    return true;
+                              } else {
+                                   break;
                               }
                          } else {
                               break;
@@ -166,6 +195,7 @@ public class BanCo {
           while (j + dj < 9) {
                if (mangToaDo[i][j + dj].getQuanCo() != null) {
                     if (!coBiChan) {
+                         coBiChan = true;
                          if (mangToaDo[i][j + dj].getQuanCo() instanceof QuanXe) {
                               if (!mangToaDo[i][j + dj].getQuanCo().getPhe().equals(phe)) {
                                    return true;
@@ -175,6 +205,8 @@ public class BanCo {
                          if (mangToaDo[i][j + dj].getQuanCo() instanceof QuanPhao) {
                               if (!mangToaDo[i][j + dj].getQuanCo().getPhe().equals(phe)) {
                                    return true;
+                              } else {
+                                   break;
                               }
                          } else {
                               break;
@@ -367,7 +399,11 @@ public class BanCo {
           //Kiểm tra các nước không hợp lệ và loại bỏ
           xoaDiemGoiY();
           List<ToaDo> danhSachNuocDi = toaDo.getQuanCo().duDoanNuocDi(this, toaDo);
-          for(ToaDo toaDoGoiY : danhSachNuocDi) {
+          locNuocDiGoiY(danhSachNuocDi, toaDo);
+     }
+
+     private void locNuocDiGoiY(List<ToaDo> danhSachNuocDi, ToaDo toaDo) {
+          for (ToaDo toaDoGoiY : danhSachNuocDi) {
                toaDoGoiY.setLaDiemGoiY(true);
                if (toaDoGoiY.getQuanCo() != null) {
                     if (toaDo.getQuanCo().getPhe().equals(toaDoGoiY.getQuanCo().getPhe())) {
@@ -380,7 +416,7 @@ public class BanCo {
                     QuanCo quanCoDangXet = toaDo.getQuanCo();
                     toaDoGoiY.setQuanCo(quanCoDangXet);
                     toaDo.setQuanCo(null);
-                    if (coBiChieu(quanCoDangXet.getPhe())) {
+                    if (biChieu(quanCoDangXet.getPhe())) {
                          //Bị địch chiếu dẫn đến thua
                          toaDoGoiY.setLaDiemGoiY(false);
                     }
