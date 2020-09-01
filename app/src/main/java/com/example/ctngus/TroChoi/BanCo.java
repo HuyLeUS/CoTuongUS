@@ -85,14 +85,16 @@ public class BanCo {
           if (i + 1 < 10) {
                if (mangToaDo[i + 1][j].getQuanCo() instanceof QuanTot) {
                     if (!mangToaDo[i + 1][j].getQuanCo().getPhe().equals(phe)) {
-                         return true;
+                         if (mangToaDo[i + 1][j].getQuanCo().getPhe().equals(pheDuoiBanCo))
+                              return true;
                     }
                }
           }
           if (i - 1 >= 0) {
                if (mangToaDo[i - 1][j].getQuanCo() instanceof QuanTot) {
                     if (!mangToaDo[i - 1][j].getQuanCo().getPhe().equals(phe)) {
-                         return true;
+                         if (!mangToaDo[i - 1][j].getQuanCo().getPhe().equals(pheDuoiBanCo))
+                              return true;
                     }
                }
           }

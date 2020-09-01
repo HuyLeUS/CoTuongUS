@@ -298,6 +298,12 @@ public class VeTroChoi extends View {
                }
 
           }
+          if (quanCo instanceof QuanSoai) {
+               if(troChoi.getBanCo().biChieu(quanCo.getPhe()))
+               {
+                    borderColor = Color.parseColor("#e74c3c");
+               }
+          }
           veQuanCo(canvas, x, y, chessSymbol, chessColor, borderColor);
      }
 
